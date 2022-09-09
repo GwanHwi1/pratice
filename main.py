@@ -1,24 +1,22 @@
-n, m = map(int,input().split())
-dx,dy,direction = map(int,input().split())
-arr = [list(map(int,input().split())) for row in range(n)]
+a= input()
 count=0
+point=['a','b','c','d','e','f','g','h']
+x,y=0,0
 
-def dir(direction, dx, dy):
-  x=[0,1,0,-1]
-  y=[1,0,-1,0]
-  global count
-  count+=1
-  arr[dx][dy]+=1
-  for i in range (4):
-    if dx+x[direction]>m-1 or dy+y[direction]>n-1 or dx+x[direction]<0 or dy+y[direction]<0: direction-=1
-    if direction==-1: direction=3
-    if arr[dx+x[direction]][dy+y[direction]]==1 : direction-=1
-    if direction==-1: direction=3
-  if dx+x[direction]>m-1 or dy+y[direction]>n-1 or dx+x[direction]<0 or dy+y[direction]<0: return count
-  if arr[dx+x[direction]][dy+y[direction]] != 0: return count
-  else: 
-    dx+=x[direction]
-    dy+=y[direction]
-    return dir(direction, dx, dy)
+for i in range(len(point)): #입력값 좌표설정
+  if a[0]==point[i]: x=i+1
+y=int(a[1])
 
-print(dir(direction, dx, dy))
+if x-2>0:
+  if y+1<9: count+=1
+  if y-1>0: count+=1
+if x+2<9:
+  if y+1<9: count+=1
+  if y-1>0: count+=1
+if y-2>0:
+  if x+1<9: count+=1
+  if x-1>0: count+=1
+if y+2<9:
+  if x+1<9: count+=1
+  if x-1>0: count+=1
+print(count)
