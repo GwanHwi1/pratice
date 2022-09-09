@@ -1,28 +1,24 @@
-x=1
-y=1
-point={'U':-1, 'D':1, 'L':-1, 'R':1}
-point_key=list(point.keys())
-n=int(input())
-a=list(map(str, input().split()))
-count1=count2=count3=count4=0
-remove_set={0}
-for i in range(len(a)):
-  if a[i]=='U': count1+=1
-  elif a[i]=='D': count2+=1
-  elif a[i]=='L': count3+=1
-  else : count4+=1
-  if count1>count2 :
-    count1-=1
-    a[i] = 0
-  elif count3>count4 :
-    count3-=1
-    a[i] = 0
-result = [i for i in a if i not in remove_set]
-for i in range(n):
-  if result[i] == point_key[0] or result[i] == point_key[1] :
-    x+=point[result[i]]
-    if x<=0: x=1
-  else:
-    y+=point[result[i]]
-    if y<=0: y=1
-print(x,y)
+n, m = map(int,input().split())
+dx,dy,direction = map(int,input().split())
+arr = [list(map(int,input().split())) for row in range(n)]
+count=0
+
+def dir(direction, dx, dy):
+  x=[0,1,0,-1]
+  y=[1,0,-1,0]
+  global count
+  count+=1
+  arr[dx][dy]+=1
+  for i in range (4):
+    if dx+x[direction]>m-1 or dy+y[direction]>n-1 or dx+x[direction]<0 or dy+y[direction]<0: direction-=1
+    if direction==-1: direction=3
+    if arr[dx+x[direction]][dy+y[direction]]==1 : direction-=1
+    if direction==-1: direction=3
+  if dx+x[direction]>m-1 or dy+y[direction]>n-1 or dx+x[direction]<0 or dy+y[direction]<0: return count
+  if arr[dx+x[direction]][dy+y[direction]] != 0: return count
+  else: 
+    dx+=x[direction]
+    dy+=y[direction]
+    return dir(direction, dx, dy)
+
+print(dir(direction, dx, dy))
