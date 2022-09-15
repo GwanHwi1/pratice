@@ -1,4 +1,8 @@
-mylist=[]
-for i in range(3):
-    mylist.append([1,2])
-print(mylist[1][1])
+n=int(input())
+for i in range(1,n+1):
+  count=0
+  for j in str(i):
+    if j =='3' or j=='6' or j=='9': count+=1
+  if count!=0:
+    print('-'*count,end=" ")
+  else: print(i,end=" ")
