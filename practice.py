@@ -1,2 +1,2 @@
-a=[1,2,3,4,5]
-print(sum(a[3:5]))
+a=map(int,input().split())
+print(a)
