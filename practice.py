@@ -1,2 +1,2 @@
-a=map(int,input().split())
-print(a)
+for i in range(4,0,-1):
+  print(i)
