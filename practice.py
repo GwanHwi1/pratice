@@ -1,2 +1,4 @@
-for i in range(4,0,-1):
-  print(i)
+a={1,3,4,5,4}
+a=set()
+a.add(1)
+print(a)
