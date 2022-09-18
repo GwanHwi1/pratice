@@ -1,27 +1,26 @@
-t=int(input())
+def solution(arr):
+  students=[]
+  for i in arr:
+    countA=i.count('A')
+    countP=i.count('P')
+    countL=i.count('L')
+    score=10
+    if countP+(countL//2)>=3:
+      score=0
+    else:
+      score+=countA-(countL//2)-countP
+    students.append(score)
+  studentsGrade=students.copy()
+  studentsGrade.sort(reverse=True)
+  grade=[]
+  for i in range(len(studentsGrade)):
+    if i==0:
+      grade.append(students.index(studentsGrade[i])+1)
+    else:
+      if studentsGrade[i]==studentsGrade[i-1]:
+        grade.append(students.index(studentsGrade[i],students.index(studentsGrade[i])+1,len(students))+1)
+      else: grade.append(students.index(studentsGrade[i])+1)
+  return grade
 
-def rotate(arr):
-  length=len(arr)
-  rotation=[[0 for _ in range(length)]for _ in range(length)]
-  for i in range(length):
-    for j in range(length):
-      rotation[j][length-i-1]=arr[i][j]
-  return rotation
-
-for i in range(1,t+1):
-  n=int(input())
-  mat=[list(map(int, input().split()))for _ in range(n)]
-  result1=rotate(mat) #90도
-  result2=rotate(result1) #180도
-  result3=rotate(result2) #270도
-  print("#"+str(i))
-  for j in range(n):
-    for k in range(n):
-      if k==n-1: print(result1[j][k],end=" ")
-      else: print(result1[j][k],end="")
-    for k in range(n):  
-      if k==n-1: print(result2[j][k],end=" ")
-      else: print(result2[j][k],end="")
-    for k in range(n):
-      if k==n-1: print(result3[j][k],end="\n")
-      else: print(result3[j][k],end="")
+a=list(map(str, input().split()))
+print(solution(a))
