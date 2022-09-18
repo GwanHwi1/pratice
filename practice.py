@@ -1,4 +1,4 @@
-a={1,3,4,5,4}
-a=set()
-a.add(1)
+a=[[0 for _ in range(3)]for _ in range(3)]
+a[1][1]=45
+a[1][1]=543
 print(a)
