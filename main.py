@@ -1,26 +1,22 @@
-def solution(arr):
-  students=[]
-  for i in arr:
-    countA=i.count('A')
-    countP=i.count('P')
-    countL=i.count('L')
-    score=10
-    if countP+(countL//2)>=3:
-      score=0
-    else:
-      score+=countA-(countL//2)-countP
-    students.append(score)
-  studentsGrade=students.copy()
-  studentsGrade.sort(reverse=True)
-  grade=[]
-  for i in range(len(studentsGrade)):
-    if i==0:
-      grade.append(students.index(studentsGrade[i])+1)
-    else:
-      if studentsGrade[i]==studentsGrade[i-1]:
-        grade.append(students.index(studentsGrade[i],students.index(studentsGrade[i])+1,len(students))+1)
-      else: grade.append(students.index(studentsGrade[i])+1)
-  return grade
-
-a=list(map(str, input().split()))
-print(solution(a))
+t=int(input())
+for i in range(1,t+1):
+  n,m=map(int,input().split())
+  a=list(map(int, input().split()))
+  b=list(map(int, input().split()))
+  result=0
+  if n==m:
+    for j in range(n):
+      result+=a[j]*b[j]
+  elif n>m:
+    for j in range(n-m+1):
+      total=0
+      for k in range(m):
+        total+=a[j+k]*b[k]
+      result=max(result,total)
+  else:
+    for j in range(m-n+1):
+      total=0
+      for k in range(n):
+        total+=a[k]*b[j+k]
+      result=max(result,total)
+  print("#"+str(i),result)
