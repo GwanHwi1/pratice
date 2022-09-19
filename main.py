@@ -1,42 +1,25 @@
 t=int(input())
 for i in range(1,t+1):
-  n=int(input())
-  arr=[[0 for _ in range(n)]for _ in range(n)]
-  a=b=0
-  way=1
-  while(way<=n**2):
-    while(b<n): #오른쪽으로 이동
-      if arr[a][b]!=0: break
-      else: 
-        arr[a][b]=way
-        way+=1
-        b+=1
-    b-=1
-    a+=1
-    while(a<n): #아래로 이동
-      if arr[a][b]!=0: break
-      else: 
-        arr[a][b]=way
-        way+=1
-        a+=1
-    a-=1
-    b-=1
-    while(b>=0): #왼쪽으로 이동
-      if arr[a][b]!=0: break
-      else:
-        arr[a][b]=way
-        way+=1
-        b-=1
-    b+=1
-    a-=1
-    while(a>=0): #위로 이동
-      if arr[a][b]!=0: break
-      else:
-        arr[a][b]=way
-        way+=1
-        a-=1
-    a+=1
-    b+=1
-  print("#"+str(i))
-  for j in range(n):
-    print(*arr[j])
+  m1,d1,m2,d2=map(int, input().split())
+  day31=[1,3,5,7,8,10,12]
+  day30=[4,6,9,11]
+  day=1
+  while(True):
+    d1+=1
+    day+=1
+    if m1 in day31:
+      if d1>31:
+        m1+=1
+        d1=1
+    elif m1 in day30:
+      if d1>30:
+        m1+=1
+        d1=1
+    else: #2월
+      if d1>28:
+        m1+=1
+        d1=1
+    if m1>12: m1-=12
+    if m1==m2 and d1==d2:
+      break
+  print("#"+str(i),day)
