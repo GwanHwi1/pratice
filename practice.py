@@ -1,2 +1,1 @@
-a=map(int, input().split())
-print(a)
+print(ord(' '))

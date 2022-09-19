@@ -1,16 +1,32 @@
 t=int(input())
-for i in range(1,t+1):
-  n=int(input())
-  v=0
-  dis=0
-  for j in range(n):
-    a=list(map(int, input().split()))
-    if a[0]==1:
-      if a[1]==2: v+=2
-      else: v+=1
-    elif a[0]==2:
-      if a[1]==1: v-=1
-      else: v-=2
-    if v<0: v=0
-    dis+=v
-  print("#"+str(i),dis)
+
+def binaryN(num):#이진수 만들기 함수
+  res=bin(num)
+  result=res[2:]
+  while(len(result)<6):
+    result="0"+result    
+  return result
+
+data=dict() #encoding표 
+for i in range(26): data[chr(65+i)]=binaryN(i)
+for i in range(26): data[chr(97+i)]=binaryN(i+26)
+for i in range(10): data[chr(48+i)]=binaryN(i+52)
+data['+']=binaryN(62)
+data['/']=binaryN(63)
+
+for test in range(1,t+1): #decoding
+  a=input()
+  string=""
+  result=""
+  for i in range(len(a)):
+    string+=data[a[i]]
+  for i in range(0,len(string)-8,8):
+    con="0b"+string[i:i+8]
+    decimal=int(con,2)
+    result+=chr(decimal)
+
+  if (len(string)%8)!=0:
+    con="0b"+string[len(string)-8:]
+    decimal=int(con,2)
+    result+=chr(decimal)
+  print("#"+str(test),result+'.')
