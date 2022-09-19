@@ -1,2 +1,3 @@
-while(True):
-  print(1)
+a="000000000"
+a.insert  
+print(type(a))
