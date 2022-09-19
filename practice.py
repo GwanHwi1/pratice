@@ -1,3 +1,2 @@
-a=[1,2,3,4,5]
-a.reverse()
+a=map(int, input().split())
 print(a)
