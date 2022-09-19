@@ -1,3 +1,3 @@
-a="000000000"
-a.insert  
-print(type(a))
+a=[1,2,3,4,5]
+a.reverse()
+print(a)
