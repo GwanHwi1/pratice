@@ -1,3 +1,2 @@
-a=[1,2,3,4]
-a[1:3]=0
-print(a)
+for i in range(10,0,-1):
+  print(i, end=" ")
