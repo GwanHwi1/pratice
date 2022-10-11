@@ -1,21 +1,32 @@
-def bigger(arr,result,n):
-  if n>=len(arr): return result
-  for i in range(len(arr)):
-    if i!=n:
-      if arr[n][0] > arr[i][0] and arr[n][1] > arr[i][1]:
-        result[n][0]+=1
-      elif arr[n][0] >=arr[i][0] and arr[n][1] <= arr[i][1]:
-        result[n][1]+=1
-      elif arr[n][0] <= arr[i][0] and arr[n][1] >= arr[i][1]:
-        result[n][1]+=1
-  bigger(arr,result,n+1)
+m,n= map(int, input().split())
+chess=[list(map(str,input()))for _ in range(m)]
+dx=[-1,0]
+dy=[0,-1]
+result=64
 
-n=int(input())
-result=[[0,0]for _ in range(n)]
-lst=[list(map(int, input().split()))for _ in range(n)]
-bigger(lst,result,0)
-result1=[]
-for i in range(len(result)):
-  result1.append(n-sum(result[i]))
-print(' '.join(str(e) for e in result1))
+def color(arr):
+  tf=False
+  cnt=0
+  for i in range(8):
+    for j in range(8):
+      for k in range(2):
+        nx=i+dx[k]
+        ny=j+dy[k]
+        if nx>=0 and nx<=7 and ny>=0 and ny<=7:
+          if arr[i][j]==arr[nx][ny]: 
+            tf=True
+      if tf==True:
+        if arr[i][j]=="W": arr[i][j]="B"
+        elif arr[i][j]=="B": arr[i][j]="W"
+        tf=False
+        cnt+=1
+  if cnt>32: cnt=64-cnt
+  return cnt
 
+for i in range(m-7):
+  for j in range(n-7):
+    lst=[]
+    for k in range(8):
+      lst.append(chess[i+k][j:j+8])
+    result=min(result,color(lst))
+print(result)
