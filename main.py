@@ -1,15 +1,15 @@
-n,m=map(int,input().split())
+n,m = map(int, input().split())
 arr=[]
 
-def permutate(n,m):
+def combinate(a):
   if len(arr)==m:
-    result= " ".join(map(str,arr))
-    print(result) 
-    return  
-  for i in range(1,n+1):
+    result=" ".join(map(str, arr))
+    print(result)
+    return
+  for i in range(a,n+1):
     if i in arr: continue
     arr.append(i)
-    permutate(n,m)
+    combinate(i+1)
     arr.pop()
 
-permutate(n,m)
+combinate(1)
