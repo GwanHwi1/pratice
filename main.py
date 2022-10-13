@@ -1,29 +1,15 @@
-def search():
-  for i in range(n):
-    for j in range(n):
-      if board[i][j]=="#": return [i,j]
-
 test_case=int(input())
 for t in range(1,test_case+1):
-  n=int(input())
-  board=[list(map(str,input()))for _ in range(n)]
-  cnt=0
-  tf=True
-  length=0
-  arr=search()
-  
-  for i in range(arr[1],n):
-    if board[arr[0]][i]==".": break
-    else: length+=1
+  nums=list(input())
+  minNums=int("".join(s for s in nums))
+  maxNums=int("".join(s for s in nums))
+  for i in range(len(nums)):
+    for j in range(i+1,len(nums)):
+      nums[i],nums[j]=nums[j],nums[i]
+      if nums[0]!='0':
+        k=int("".join(s for s in nums))
+        minNums=min(minNums,k)
+        maxNums=max(maxNums,k)
+      nums[i],nums[j]=nums[j],nums[i]
+  print(f"#{t} {minNums} {maxNums}")
 
-  for i in range(n):
-    for j in range(n):
-      if arr[0]<=i<arr[0]+length and arr[1]<=j<arr[1]+length:
-        if board[i][j]==".":
-          tf=False
-      else:
-        if board[i][j]=="#":
-          tf=False
-  if tf==True: print(f"#{t} yes")
-  else: print(f"#{t} no")
-            
