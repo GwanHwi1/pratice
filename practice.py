@@ -1,5 +1,2 @@
-tf=True
-tf= not tf
-print(tf)
-tf= not tf
-print(tf)
+a=input()
+print(a[1])
