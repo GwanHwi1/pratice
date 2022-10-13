@@ -1,11 +1,29 @@
+def search():
+  for i in range(n):
+    for j in range(n):
+      if board[i][j]=="#": return [i,j]
+
 test_case=int(input())
-lst=[]
-for i in range(97,123):
-  lst.append(chr(i))
 for t in range(1,test_case+1):
-  s=input()
+  n=int(input())
+  board=[list(map(str,input()))for _ in range(n)]
   cnt=0
-  for i in range(len(s)):
-    if s[i]==lst[i]: cnt+=1
-    else: break
-  print("#"+str(t),cnt)
+  tf=True
+  length=0
+  arr=search()
+  
+  for i in range(arr[1],n):
+    if board[arr[0]][i]==".": break
+    else: length+=1
+
+  for i in range(n):
+    for j in range(n):
+      if arr[0]<=i<arr[0]+length and arr[1]<=j<arr[1]+length:
+        if board[i][j]==".":
+          tf=False
+      else:
+        if board[i][j]=="#":
+          tf=False
+  if tf==True: print(f"#{t} yes")
+  else: print(f"#{t} no")
+            
