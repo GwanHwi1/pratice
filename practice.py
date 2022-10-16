@@ -1,3 +1,4 @@
-a=123
-b= [sorted(str(a * i)) for i in range(2,11)]
+a=3
+b=a
+a-=1
 print(b)
