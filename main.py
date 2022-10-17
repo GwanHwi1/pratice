@@ -1,15 +1,31 @@
-test_case=int(input())
-for t in range(1,test_case+1):
-  n=int(input())
-  farm=[list(map(int,input()))for _ in range(n)]
-  result=0
-  half=n//2
-  a=n//2+1
-  for i in range(n):
-    if i<=half: a-=1
-    else: a+=1
-    for j in range(a,n-a):
-      result+=farm[i][j]
-  print(f"#{t} {result}")
+def RightCrossPlus(x,y):
+  global right
+  if x==100: return
+  right+=arr[x][y]
+  RightCrossPlus(x+1,y+1)
 
+def LeftCrossPlus(x,y):
+  global left
+  if x==100: return
+  left+=arr[x][y]
+  LeftCrossPlus(x+1,y-1)
+
+for t in range(1,11):
+  n=int(input())
+  arr=[list(map(int,input().split()))for _ in range(100)]
+  right=0
+  left=0
+  result=0
+  total=0
+  RightCrossPlus(0,0)
+  LeftCrossPlus(0,99)
+  for i in range(100): #행
+    if result<sum(arr[i]): result=sum(arr[i])
+  for i in range(100): #열
+    for j in range(100):
+      total+=arr[j][i]
+    if result<total: result=total
+    total=0
+  result=max(left,right,result)
+  print(f"#{n} {result}")
 
