@@ -1,20 +1,17 @@
-def change(arr,n):
+def flatten(n):
   global result
-  if n==0:
-    a=int("".join(s for s in arr))
-    if a>result: result=a
-    return
-  for i in range(len(arr)):
-    for j in range(i+1,len(arr)):
-      arr[i],arr[j]=arr[j],arr[i]
-      change(arr,n-1)
-      arr[i],arr[j]=arr[j],arr[i]
+  boxes.sort()
+  result=boxes[-1]-boxes[0]
+  if result<=1 or n==0: return result
+  boxes[-1]-=1
+  boxes[0]+=1
+  flatten(n-1)
 
-test_case=int(input())
-for t in range(1,test_case+1):
-  a,b=map(int, input().split())
-  lst=list(str(a))
+for t in range(1,11):
+  a=int(input())
+  boxes=list(map(int,input().split()))
   result=0
-  if b>6: b=6
-  change(lst,b)
+  flatten(a)
   print(f"#{t} {result}")
+
+  
