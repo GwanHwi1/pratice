@@ -1,16 +1,24 @@
-def dfs(goal,x):
-  global cnt
-  if goal==k:
-    cnt+=1
-    return
-  elif goal>k: return
-  for i in range(x,n):
-    dfs(goal+a[i],i+1)
-    
-test_case=int(input())
-for t in range(1,test_case+1):
-  n,k=map(int,input().split())
-  a=list(map(int,input().split()))
-  cnt=0
-  dfs(0,0)
-  print(f"#{t} {cnt}")
+for t in range(1,11):
+  n=int(input())
+  a=[list(map(int,input().split()))for _ in range(n)]
+  result=0
+  b=[[0]*n for _ in range(n)]
+  for i in range(n):
+    for j in range(n):
+      b[i][j]=a[j][i]
+
+  for i in range(n):
+    tf=0
+    cnt=0
+    for j in range(n):
+      if tf==0 and b[i][j]==1:
+        cnt+=1
+        tf=b[i][j]
+      if b[i][j]==1 and tf==2:
+        cnt+=1
+        tf=b[i][j]
+      if b[i][j]==2 and tf==1:
+        cnt+=1
+        tf=b[i][j]
+    result+=cnt//2
+  print(f"#{t} {result}")
