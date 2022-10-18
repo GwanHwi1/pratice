@@ -1,3 +1,6 @@
-a=[[1,2,3],[4,5,6]]
-for i in a[1]:
-  print(i)
+from collections import deque
+
+a=list(map(int,input().split()))
+b=deque(a)
+print(b)
+print(b[0])
