@@ -1,6 +1,2 @@
-from collections import deque
-
-a=list(map(int,input().split()))
-b=deque(a)
-print(b)
-print(b[0])
+a=list(map(str,input()))
+print(a)
