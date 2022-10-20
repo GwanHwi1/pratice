@@ -1,26 +1,22 @@
-lst=[[]]
-# def makeList(a,b,c):
-#   if a==0: return
-#   if c==0: b,c=c+1,b  
-#   lst.append([b,c])
-#   makeList(a-1,b+1,c-1)
-# makeList(10000,1,1)
-a=50000
-c=1
-b=1
-while a>0:
-  if c==0: b,c=c+1,b
-  lst.append([b,c])
-  a-=1
-  b+=1
-  c-=1
-
 test_case=int(input())
 for t in range(1,test_case+1):
-  p,q=map(int,input().split())
-  w,x=map(int,lst[p])
-  y,z=map(int,lst[q])
-  w+=y
-  x+=z
-  for i in range(len(lst)):
-    if lst[i]==[w,x]: print(f"#{t} {i}")
+  n,m=map(int,input().split())
+  for _ in range(n):
+    a=list(map(int,input()))
+    if 1 in a: arr=a
+  for i in range(len(arr)-1,-1,-1):
+    if arr[i]==1:
+      arr=arr[i-55:i+1]
+      break
+  decode=[[0,0,0,1,1,0,1],[0,0,1,1,0,0,1],[0,0,1,0,0,1,1],[0,1,1,1,1,0,1],[0,1,0,0,0,1,1],
+          [0,1,1,0,0,0,1],[0,1,0,1,1,1,1],[0,1,1,1,0,1,1],[0,1,1,0,1,1,1],[0,0,0,1,0,1,1]]
+  even=[]
+  odd=[]
+  for i in range(0,63,7):
+    a=arr[i:i+7]
+    for j in range(len(decode)):
+      if a==decode[j] and ((i+7)//7)%2==1: odd.append(j)
+      elif a==decode[j] and ((i+7)//7)%2==0: even.append(j)
+  result=(sum(odd)*3)+sum(even)
+  if result%10==0: print(f"#{t} {sum(even)+sum(odd)}")
+  else: print(f"#{t}",0)
