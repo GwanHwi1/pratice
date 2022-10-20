@@ -1,21 +1,26 @@
-def check(a):
-  global tf,k,arr
-  if k>=len(arr): k=len(arr)
-  for i in range(k):
-    if m*a>arr[i]: 
-      tf=False
-      break
-  if not tf or len(arr)==0: return
-  else: 
-    arr=arr[k:]
-    check(a+1)
+lst=[[]]
+# def makeList(a,b,c):
+#   if a==0: return
+#   if c==0: b,c=c+1,b  
+#   lst.append([b,c])
+#   makeList(a-1,b+1,c-1)
+# makeList(10000,1,1)
+a=50000
+c=1
+b=1
+while a>0:
+  if c==0: b,c=c+1,b
+  lst.append([b,c])
+  a-=1
+  b+=1
+  c-=1
 
 test_case=int(input())
 for t in range(1,test_case+1):
-  n,m,k=map(int,input().split())
-  arr=list(map(int,input().split()))
-  arr.sort()
-  tf=True
-  check(1)
-  if tf: print(f"#{t} Possible")
-  else: print(f"#{t} Impossible")
+  p,q=map(int,input().split())
+  w,x=map(int,lst[p])
+  y,z=map(int,lst[q])
+  w+=y
+  x+=z
+  for i in range(len(lst)):
+    if lst[i]==[w,x]: print(f"#{t} {i}")
